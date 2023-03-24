@@ -22,4 +22,4 @@ CREATE TABLE borrowed_books (
     book_id int NOT NULL,
     FOREIGN KEY (borrower_id) REFERENCES borrowers(id),
     FOREIGN KEY (book_id) REFERENCES books(id)
-)
+);
