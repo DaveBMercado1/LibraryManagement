@@ -2,7 +2,10 @@ package ceu.demo.practice.LibraryManagement.entities;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -27,7 +30,8 @@ public class Borrower {
 
     private String email;
 
-    @OneToMany(mappedBy = "borrower")
+    @JsonIgnore
+    @OneToMany(mappedBy = "borrower", fetch = FetchType.LAZY)
     private List<BorrowedBook> borrowedBooks;
 
 }

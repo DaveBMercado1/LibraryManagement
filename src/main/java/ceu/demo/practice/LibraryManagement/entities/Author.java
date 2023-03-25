@@ -2,7 +2,10 @@ package ceu.demo.practice.LibraryManagement.entities;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -13,7 +16,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "users")
+@Table(name = "authors")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -25,7 +28,8 @@ public class Author {
 
     private String name;
 
-    @OneToMany(mappedBy = "author")
+    @JsonIgnore
+    @OneToMany(mappedBy = "author", fetch = FetchType.EAGER)
     private List<Book> books;
 
 }

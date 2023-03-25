@@ -13,7 +13,7 @@ import ceu.demo.practice.LibraryManagement.repositories.AuthorRepository;
 
 @RestController
 @RequestMapping("/author")
-public class AuthorControllers {
+public class AuthorController {
 
     @Autowired
     private AuthorRepository authorRepository;
@@ -21,6 +21,7 @@ public class AuthorControllers {
     @GetMapping
     public List<Author> getAll() {
         List<Author> authors = authorRepository.findAll();
+        String title = authors.get(0).getBooks().get(0).getTitle();
         return authors;
     }
 
