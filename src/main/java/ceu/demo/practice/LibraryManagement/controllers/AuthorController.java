@@ -5,29 +5,29 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import ceu.demo.practice.LibraryManagement.entities.Author;
-import ceu.demo.practice.LibraryManagement.repositories.AuthorRepository;
+import ceu.demo.practice.LibraryManagement.forms.AuthorForm;
+import ceu.demo.practice.LibraryManagement.services.AuthorService;
 
 @RestController
 @RequestMapping("/author")
 public class AuthorController {
 
     @Autowired
-    private AuthorRepository authorRepository;
+    private AuthorService authorService;
 
     @GetMapping
     public List<Author> getAll() {
-        List<Author> authors = authorRepository.findAll();
-        String title = authors.get(0).getBooks().get(0).getTitle();
-        return authors;
+        return authorService.getAll();
     }
 
-    @PostMapping
-    public void save() {
-
+    @PostMapping("/save")
+    public Author save(@RequestBody AuthorForm authorForm) {
+        return authorService.save(authorForm);
     }
 
 }
