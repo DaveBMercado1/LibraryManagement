@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class AuthorForm {
 
+    private int id;
+
     private String name;
 
 }
